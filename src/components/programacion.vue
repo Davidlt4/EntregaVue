@@ -23,7 +23,7 @@
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
             <tr v-if="curso.categoria=='programacion'">
-                <td>{{ curso.nombre }}</td>
+                <td><router-link v-bind:to="'/detallesCurso/'+curso.id">{{ curso.nombre }}</router-link></td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
                 <td><button>Incribirse</button></td>
@@ -43,5 +43,12 @@
     }
     button{
         background-color: rgb(255, 136, 0);
+    }
+    a{
+        color:  rgb(255, 136, 0);
+    }
+    a:hover{
+        background-color: rgba(0, 0, 0, 0);
+        color: white;
     }
 </style>

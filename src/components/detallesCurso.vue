@@ -17,6 +17,7 @@
                 <td>Nombre</td>
                 <td>Horas</td>
                 <td>Imagen</td>
+                <td>Pdf</td>
                 <td>Inscripción</td>
             </tr>
         </thead>
@@ -25,6 +26,7 @@
                 <td>{{ curso.nombre }}</td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                <td><a v-bind:href="'/src/pdf/'"></a></td>
                 <td><button>Incribirse</button></td>
             </tr>
         </tbody>

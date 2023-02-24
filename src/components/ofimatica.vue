@@ -44,4 +44,11 @@
     button{
         background-color: rgb(255, 136, 0);
     }
+    a{
+        color:  rgb(255, 136, 0);
+    }
+    a:hover{
+        background-color: rgba(0, 0, 0, 0);
+        color: white;
+    }
 </style>
