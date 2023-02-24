@@ -8,16 +8,23 @@
     const cursos = useCollection(collection(db, 'Cursos'))
 
 
-    function generarPdf(nombre, horas, img){
-        let doc = new jsPDF();
-        let logo = new Image();
-        let descripcion = 'Descripcion: Bienvendido a este curso de' + nombre + 'Espero que te sea de utilidad, buena suerte.';
-        logo.src = '../src/img/' + img;
-        doc.text(20,20, 'Curso: ' + nombre);
-        doc.text(20,40, 'Horas del curso: ' + horas);
-        doc.addImage(logo,'png', 20, 50, 70, 70);
-        doc.text(20,140, descripcion);
-        doc.save(nombre + '.pdf');
+    function generarPdf(nombre, horas, img,categoria){
+
+        let pdf = new jsPDF();
+        let imagen_curso = new Image();
+        let contenido = 'Contenido: Bienvendido a este curso de ' + nombre + '\nEspero que te sea de utilidad,buena suerte.';
+        pdf.addFont('bromellonavidadregular', 'bromellonavidadregular', 'normal');
+        pdf.setFont("bromellonavidadregular");
+        pdf.setFont(undefined, 'bold');
+        imagen_curso.src = '../src/img/' + img;
+        pdf.setTextColor(255,0,0);
+        pdf.text(10,10,'Categoria:'+categoria);
+        pdf.setTextColor(0,0,0);
+        pdf.text(25,25, 'Curso: ' + nombre);
+        pdf.text(25,40, 'Horas del curso: ' + horas);
+        pdf.addImage(imagen_curso,'png', 20, 50, 70, 70);
+        pdf.text(25,140, contenido);
+        pdf.save(nombre + '.pdf');
     }
 
 </script>
@@ -40,7 +47,7 @@
                 <td>{{ curso.nombre }}</td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
-                <td><button @click="generarPdf(curso.nombre, curso.horas, curso.imagen)">Generar Pdf</button></td>
+                <td><button @click="generarPdf(curso.nombre, curso.horas, curso.imagen,curso.categoria)">pdf</button></td>
                 <td><button>Incribirse</button></td>
             </tr>
         </tbody>
