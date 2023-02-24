@@ -1,8 +1,17 @@
 @import './base.css';
 
 #app {
-  width: 70%;
+  width: 85%;
   margin: 0 auto;
+}
+
+header {
+  width: 100%;
+}
+
+nav{
+  margin: auto;
+  width: 100%;
 }
 
 main{
@@ -26,10 +35,4 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
 
-}

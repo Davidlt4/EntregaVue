@@ -4,7 +4,7 @@
 import pie from "./components/pie.vue"
 import cabecera from "./components/cabecera.vue"
 
-import { onAuthStateChanged} from "firebase/auth";
+import { onAuthStateChanged,signOut} from "firebase/auth";
 
 import {ref} from "vue";
 import {auth} from "./firebase.js";
@@ -19,6 +19,13 @@ if (user) {
     const uid = user.uid;
     nombreUsuario.value=user.email;
 }
+});
+
+signOut(auth).then(() => {
+            nombreUsuario='';
+            //location.reload();
+        }).catch((error) => {
+        // An error happened.
 });
 
 
@@ -76,6 +83,15 @@ onMounted(() => {
 
   header {
     line-height: 1.5;
+  }
+
+  header {
+    width: 100%;
+  }
+  
+  nav{
+    margin: auto;
+    width: 100%;
   }
 
   .preload {

@@ -14,7 +14,7 @@ import SOs from "./components/SOs.vue"
 
 
 import { createRouter,createWebHistory } from 'vue-router'
-import { onAuthStateChanged,signOut } from "firebase/auth";
+import { onAuthStateChanged} from "firebase/auth";
 import {auth} from "./firebase.js"
 
 
@@ -28,6 +28,7 @@ onAuthStateChanged(auth, (user) => {
         estaAutenticado=true;
     } else {
         estaAutenticado=false;
+        
         router.push("/");
     }
 

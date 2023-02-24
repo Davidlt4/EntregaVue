@@ -17,6 +17,7 @@
     function cerrarSesion(){
         signOut(auth).then(() => {
             nombreUsuario='';
+            //location.reload();
         }).catch((error) => {
         // An error happened.
         });
@@ -34,7 +35,8 @@
             <router-link to="/SOs">SOs</router-link>
             <router-link v-if="nombreUsuario!=''" to="/privado">Administración</router-link>
             <router-link v-if="nombreUsuario==''" to="/registro">Login</router-link>
-            <button @click="cerrarSesion" v-else="nombreUsuario!=''" to="/registro">Cerrar sesion</button>
+            <button @click="cerrarSesion" v-else="nombreUsuario!=''">Cerrar sesion</button>
+            <p v-if="nombreUsuario!=''">{{ nombreUsuario }}</p>
 
         </nav>
     </header>
@@ -42,6 +44,16 @@
 
 
 <style scoped>
+
+header {
+    width: 100%;
+  }
+  
+  nav{
+    margin: auto;
+    width: 100%;
+  }
+
 
     button{
         width: 100px;
