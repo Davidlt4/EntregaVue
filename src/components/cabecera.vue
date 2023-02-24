@@ -3,7 +3,6 @@
     import { onAuthStateChanged,signOut} from "firebase/auth";
     import {ref} from "vue";
     import {auth} from "../firebase.js"
-
     import { onMounted } from 'vue';
 
     let nombreUsuario=ref("");
@@ -60,7 +59,6 @@
     </main>
 
 </template>
-º
 
 <style scoped>
 
