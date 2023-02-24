@@ -11,6 +11,7 @@ import privado from "./components/privado.vue"
 import ofimatica from "./components/ofimatica.vue"
 import programacion from "./components/programacion.vue"
 import SOs from "./components/SOs.vue"
+import detallesCurso from "./components/detallesCurso.vue"
 
 
 import { createRouter,createWebHistory } from 'vue-router'
@@ -66,6 +67,11 @@ const routes = [
             return estaAutenticado
         }
     },
+
+    {
+        path: "/detallesCurso/:id",
+        component: detallesCurso
+    }
 
 ]
 
