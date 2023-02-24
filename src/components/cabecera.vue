@@ -19,7 +19,7 @@
     function cerrarSesion(){
         signOut(auth).then(() => {
             nombreUsuario='';
-            //location.reload();
+            location.reload();
         }).catch((error) => {
         // An error happened.
         });
