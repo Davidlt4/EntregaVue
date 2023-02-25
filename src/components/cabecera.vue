@@ -1,12 +1,16 @@
 <script setup>
 
+    /** Todos los imports que necesitamos para nuestro componente*/
+
     import { onAuthStateChanged,signOut} from "firebase/auth";
     import {ref} from "vue";
     import {auth} from "../firebase.js"
     import { onMounted } from 'vue';
 
+    /**Varible nombreUsuario para distinguir si hay un usuario logeado o no*/
     let nombreUsuario=ref("");
 
+    /**Función para logear un usuario y guardar su email en la variable nombreUsuario*/
     onAuthStateChanged(auth, (user) => {
     if (user) {
         const uid = user.uid;
@@ -14,7 +18,7 @@
     }
     });
 
-
+    /**Función para cerrar sesión y poner la variable nombreUsuario a vacio*/
     function cerrarSesion(){
         signOut(auth).then(() => {
             nombreUsuario='';
@@ -24,11 +28,11 @@
         });
     }
 
+    /**Constante loading para poner la imagen mientras carga los datos de nuestra página*/
     const loading = ref(true)
 
     onMounted(() => {
-    // Aquí obtén los datos
-    // Cuando se hayan obtenido, establece loading en false después de 2 segundos
+    // Establecemos un loading en false después de 2 segundos
     setTimeout(() => {
         loading.value = false
     }, 2000)

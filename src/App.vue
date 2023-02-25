@@ -1,28 +1,36 @@
 <script setup>
-//import HelloWorld from './components/HelloWorld.vue'
-//import TheWelcome from './components/TheWelcome.vue'
-import pie from "./components/pie.vue"
-import cabecera from "./components/cabecera.vue"
-import { onAuthStateChanged,signOut} from "firebase/auth";
-import {ref} from "vue";
-import {auth} from "./firebase.js";
 
+/**
+ * 
+ * Autor: David López Tapias
+ * Github:Davidlt4
+ * 
+ */
 
+ import pie from "./components/pie.vue"
+ import cabecera from "./components/cabecera.vue"
+
+/** Todos los imports que necesitamos para nuestra App principal
+ * en este caso solo los componentes de pie y de cabecera
+*/
 
 
 </script>
 
 <template>
 
-    <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
+    <!--Componente cabecera con todos los links necesarios para navegar por nuestra página-->
     <cabecera></cabecera>
 
+    <!--Componente pie para añadir un footer a nuestrá página-->
     <pie></pie>
 
 
 </template>
 
 <style scoped>
+
+  /* Todo lo referente al css de nuestra web */
 
   html{
     margin: 0;

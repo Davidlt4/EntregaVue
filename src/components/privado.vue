@@ -4,7 +4,7 @@
     import {ref} from "vue";
     import {auth} from "../firebase.js"
     import {useFirestore,useCollection } from 'vuefire'
-    import {collection} from "firebase/firestore"; 
+    import {collection,doc,deleteDoc} from "firebase/firestore"; 
     import crearCurso from "./crearCurso.vue"
 
 
@@ -19,6 +19,10 @@
         nombreUsuario.value=user.email;
     }
     });
+
+    function borrarCurso(id){
+        deleteDoc(doc((db), 'cursos', id));
+    }
 
 
     
