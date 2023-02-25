@@ -1,7 +1,7 @@
 <script setup>
   
     import { useFirestore,useCollection } from 'vuefire'
-    import { collection} from "firebase/firestore"; 
+    import { collection,addDoc} from "firebase/firestore"; 
     import { getStorage, ref as refStrg, uploadBytes } from "firebase/storage";
     import { ref } from "vue";
 
@@ -22,7 +22,8 @@
 
         let categoria=document.getElementById("categoria").value;
         let nombre=document.getElementById("nombre").value;
-        let horas=toString(document.getElementById("horas").value);
+        let horas=document.getElementById("horas").value;
+        console.log(horas);
         let imagen=file.value.files[0].name;
 
         const docRef = addDoc(collection(db, "Cursos"), {

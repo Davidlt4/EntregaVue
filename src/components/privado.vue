@@ -5,6 +5,7 @@
     import {auth} from "../firebase.js"
     import {useFirestore,useCollection } from 'vuefire'
     import {collection} from "firebase/firestore"; 
+    import crearCurso from "./crearCurso.vue"
 
 
     const db = useFirestore()
@@ -85,4 +86,6 @@
             </tr>
         </tbody>
     </table><br><br>
+    <crearCurso></crearCurso>
+
 </template>

@@ -3,28 +3,11 @@
 //import TheWelcome from './components/TheWelcome.vue'
 import pie from "./components/pie.vue"
 import cabecera from "./components/cabecera.vue"
-
 import { onAuthStateChanged,signOut} from "firebase/auth";
-
 import {ref} from "vue";
 import {auth} from "./firebase.js";
 
 
-let nombreUsuario=ref("");
-
-onAuthStateChanged(auth, (user) => {
-if (user) {
-    const uid = user.uid;
-    nombreUsuario.value=user.email;
-}
-});
-
-signOut(auth).then(() => {
-            nombreUsuario='';
-            //location.reload();
-        }).catch((error) => {
-        // An error happened.
-});
 
 
 </script>
