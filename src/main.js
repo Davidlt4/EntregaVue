@@ -1,3 +1,6 @@
+/** Este componente nos genera una vista de los detalles del curso que le pasemos */
+/** Todos los imports que necesitamos para nuestro componente*/
+
 import { createApp } from 'vue'
 import App from './App.vue'
 
@@ -13,7 +16,7 @@ import programacion from "./components/programacion.vue"
 import SOs from "./components/SOs.vue"
 import detallesCurso from "./components/detallesCurso.vue"
 
-
+//Para Rutas y Login
 import { createRouter,createWebHistory } from 'vue-router'
 import { onAuthStateChanged} from "firebase/auth";
 import {auth} from "./firebase.js"
@@ -21,7 +24,7 @@ import {auth} from "./firebase.js"
 
 let estaAutenticado=false;
 
-
+//Funcion que nos cambia el estado de autenticado
 onAuthStateChanged(auth, (user) => {
 
     if (user) {
@@ -36,7 +39,7 @@ onAuthStateChanged(auth, (user) => {
 });
 
 
-
+//Establecemos las rutas para nuestra página
 const routes = [
 
     { 
@@ -75,7 +78,7 @@ const routes = [
 
 ]
 
-
+//Y las generamos
 export const router=createRouter({
     history: createWebHistory(),
     routes

@@ -1,11 +1,14 @@
 <script setup>
 
+    /** Este componente nos genera una vista con todos los cursos para Ofimatica*/
+    /** Todos los imports que necesitamos para nuestro componente*/
     import { useFirestore,useCollection } from 'vuefire'
     import { collection} from "firebase/firestore";
     import { onAuthStateChanged} from "firebase/auth";
     import {ref} from "vue";
     import {auth} from "../firebase.js"
 
+    /**Sacamos los cursos de la base de firestore*/
     const db = useFirestore()
     const cursos = useCollection(collection(db, 'Cursos'))
 
@@ -24,7 +27,9 @@
 
 <template>
 
-    <h1>Programación</h1>
+    <h1>Ofimatica</h1>
+
+    <!--Generamos una tabla con los detalles de los cursos-->
     <table>
         <thead>
             <tr>
@@ -34,11 +39,15 @@
                 <td v-if="nombreUsuario!=''">Inscripción</td>
             </tr>
         </thead>
+        <!--Recorremos nuestros cursos-->
         <tbody v-for="curso in cursos" :key="curso.nombre">
+            <!--Y solo mostramos aquellos cuya categoria sea ofimatica-->
             <tr v-if="curso.categoria=='ofimatica'">
+                <!--Creamos un router link con el id del curso para así poder mostrar los detalles-->
                 <td><router-link v-bind:to="'/detallesCurso/'+curso.id">{{ curso.nombre }}</router-link></td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                <!--Solo mostramos este botón si el usuario está registrado-->
                 <td v-if="nombreUsuario!=''"><button>Incribirse</button></td>
             </tr>
         </tbody>

@@ -43,21 +43,23 @@
 <template>
     <header>
         <nav>
-
+            <!--Cada una de las rutas que tenemos configurandas en el main.js-->
             <router-link to="/">Inicio</router-link>
             <router-link to="/ofimatica">Ofimatica</router-link>
             <router-link to="/programacion">Programación</router-link> 
             <router-link to="/SOs">SOs</router-link>
+            <!--Estas rutas las mostramos en función del usuario que este registrado-->
             <router-link v-if="nombreUsuario=='admin@gmail.com'" to="/privado">Administración</router-link>
             <router-link v-if="nombreUsuario==''" to="/registro">Login</router-link>
             <button @click="cerrarSesion" v-else="nombreUsuario!=''">Cerrar sesion</button>
             <p v-if="nombreUsuario!=''">{{ nombreUsuario }}</p>
+            <!-- ----------------------------------------------------------------------- -->
 
         </nav>
     </header>
 
     <main>
-    <!-- <TheWelcome /> -->
+    <!-- Genera la imagen de preload para la vista que se está cargando -->
         <div v-if="loading" class="preload"></div>
         <div v-else> <router-view></router-view> </div>
     </main>

@@ -1,3 +1,5 @@
+/** Todos los imports que necesitamos para nuestro componente*/
+
 import { initializeApp } from '@firebase/app'
 import { getFirestore, collection } from '@firebase/firestore'
 import { getAuth } from "@firebase/auth"

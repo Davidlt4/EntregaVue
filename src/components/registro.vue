@@ -1,11 +1,14 @@
 <script setup>
 
+    /** Todos los imports que necesitamos para nuestro componente*/
     import {ref} from "vue";
     import { createUserWithEmailAndPassword,signInWithEmailAndPassword,signInWithPopup,GoogleAuthProvider} from "firebase/auth";
     import {auth} from "../firebase.js"
 
+    //Variables de usuario y contrasena pasadas por referencia
     var usuario=ref(""),contrasena=ref("");
 
+    //Función para poder dar de alta a un Usuario a través de un un email y contraseña
     function altaUsuario(){
         createUserWithEmailAndPassword(auth,usuario.value,contrasena.value).then((userCredential) => {
             const user = userCredential.user;  
@@ -15,6 +18,7 @@
         });
     }
 
+    //Login de un usuario por correo y contraseña
     function loginUsuario(){
         signInWithEmailAndPassword(auth,usuario.value, contrasena.value).then((userCredential) => {
             const user = userCredential.user;
@@ -24,6 +28,8 @@
             const errorMessage = error.message;
         });
     }
+
+    //---------------Para el login con Google---------------------
 
     const provider = new GoogleAuthProvider();
 
@@ -44,20 +50,25 @@
         });
     }
 
+    //------------------------------------------------------------
+
 </script>
 
 
 <template>
 
+    <!--Fieldset para mostrar los campos necesarios para registrarse y logearse-->
     <fieldset>
         <legend><h2>Registro Usuario</h2></legend><br>
         Email: <input type="text" name="" id="" v-model="usuario" placeholder="Email"/><br><br>
         Password: <input type="password" name="" id="" v-model="contrasena" placeholder="Contraseña"/><br><br>
-
+        <!--Botón para registrar usuario-->
         <button @click="altaUsuario">Registro de usuario</button>
         <br><br>
+        <!--Boton para logear un usuario-->
         <button @click="loginUsuario">Login de usuario</button>
         <br><br>
+        <!--Login de Google-->
         <button @click="loginGoogle">Login de Google</button>
         
     </fieldset>
