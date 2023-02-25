@@ -83,6 +83,7 @@
                 <td v-if="nombreUsuario=='admin@gmail.com'">Borrar</td>
             </tr>
         </thead>
+
         <tbody v-for="curso in cursos" :key="curso.nombre">
             <tr v-if="curso.categoria=='ofimatica'">
                 <td>{{ curso.nombre }}</td>
@@ -91,6 +92,7 @@
                 <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
             </tr>
         </tbody>
+        
     </table><br><br>
 
     <crearCurso></crearCurso>

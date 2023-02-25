@@ -17,7 +17,7 @@
         uploadBytes(storageRef, file.value.files[0]).then((snapshot) => {
             console.log('Archivo subido');
         });
-        
+
     }
     
     function nuevoCurso(){
@@ -34,6 +34,8 @@
             horas: horas,
             imagen: imagen
         });
+
+        alert("El curso se ha creado correctamente");
 
     }
 
