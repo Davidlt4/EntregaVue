@@ -21,11 +21,10 @@
     });
 
     function borrarCurso(id){
-        deleteDoc(doc((db), 'cursos', id));
+        deleteDoc(doc((db), 'Cursos', id));
     }
 
 
-    
 
 </script>
 
@@ -41,7 +40,7 @@
                 <td>Nombre</td>
                 <td>Horas</td>
                 <td>Imagen</td>
-                <td>Borrar</td>
+                <td v-if="nombreUsuario=='admin@gmail.com'">Borrar</td>
             </tr>
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
@@ -49,6 +48,7 @@
                 <td>{{ curso.nombre }}</td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
             </tr>
         </tbody>
     </table><br><br>
@@ -60,7 +60,7 @@
                 <td>Nombre</td>
                 <td>Horas</td>
                 <td>Imagen</td>
-                <td>Borrar</td>
+                <td v-if="nombreUsuario=='admin@gmail.com'">Borrar</td>
             </tr>
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
@@ -68,6 +68,7 @@
                 <td>{{ curso.nombre }}</td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
             </tr>
         </tbody>
     </table><br><br>
@@ -79,7 +80,7 @@
                 <td>Nombre</td>
                 <td>Horas</td>
                 <td>Imagen</td>
-                <td>Borrar</td>
+                <td v-if="nombreUsuario=='admin@gmail.com'">Borrar</td>
             </tr>
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
@@ -87,9 +88,11 @@
                 <td>{{ curso.nombre }}</td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
             </tr>
         </tbody>
     </table><br><br>
+
     <crearCurso></crearCurso>
 
 </template>
