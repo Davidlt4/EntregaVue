@@ -11,11 +11,13 @@
     let file = ref ("");
 
     function uploadFile(){
+
         const storage = getStorage();
         const storageRef = refStrg(storage, file.value.files[0].name);
         uploadBytes(storageRef, file.value.files[0]).then((snapshot) => {
-            console.log('Uploaded a blob file');
+            console.log('Archivo subido');
         });
+        
     }
     
     function nuevoCurso(){
@@ -69,7 +71,7 @@
         <input type="file" name="file" id="file" ref="file" @change="uploadFile">
         <br><br>
 
-        <button @click="nuevoCurso">Crear Noticia</button>
+        <button @click="nuevoCurso">Crear Curso</button>
 
     </fieldset>
 

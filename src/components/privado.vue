@@ -37,7 +37,7 @@
                 <td>Nombre</td>
                 <td>Horas</td>
                 <td>Imagen</td>
-                <td>Inscripción</td>
+                <td>Borrar</td>
             </tr>
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
@@ -56,7 +56,7 @@
                 <td>Nombre</td>
                 <td>Horas</td>
                 <td>Imagen</td>
-                <td>Inscripción</td>
+                <td>Borrar</td>
             </tr>
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
@@ -75,7 +75,7 @@
                 <td>Nombre</td>
                 <td>Horas</td>
                 <td>Imagen</td>
-                <td>Inscripción</td>
+                <td>Borrar</td>
             </tr>
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
