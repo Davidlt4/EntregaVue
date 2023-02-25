@@ -45,7 +45,7 @@
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
             <tr v-if="curso.categoria=='programacion'">
-                <td>{{ curso.nombre }}</td>
+                <td><router-link v-bind:to="'/detallesCurso/'+curso.id">{{ curso.nombre }}</router-link></td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
                 <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
@@ -65,7 +65,7 @@
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
             <tr v-if="curso.categoria=='SOs'">
-                <td>{{ curso.nombre }}</td>
+                <td><router-link v-bind:to="'/detallesCurso/'+curso.id">{{ curso.nombre }}</router-link></td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
                 <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
@@ -86,13 +86,13 @@
 
         <tbody v-for="curso in cursos" :key="curso.nombre">
             <tr v-if="curso.categoria=='ofimatica'">
-                <td>{{ curso.nombre }}</td>
+                <td><router-link v-bind:to="'/detallesCurso/'+curso.id">{{ curso.nombre }}</router-link></td>
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
                 <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
             </tr>
         </tbody>
-        
+
     </table><br><br>
 
     <crearCurso></crearCurso>

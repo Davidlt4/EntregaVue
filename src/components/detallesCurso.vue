@@ -3,9 +3,23 @@
     import { useFirestore,useCollection } from 'vuefire'
     import { collection} from "firebase/firestore";
     import { jsPDF } from "jspdf";
+    import { onAuthStateChanged} from "firebase/auth";
+    import {ref} from "vue";
+    import {auth} from "../firebase.js"
 
     const db = useFirestore()
     const cursos = useCollection(collection(db, 'Cursos'))
+
+    /**Varible nombreUsuario para distinguir si hay un usuario logeado o no*/
+    let nombreUsuario=ref("");
+
+    /**Función para logear un usuario y guardar su email en la variable nombreUsuario*/
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+        const uid = user.uid;
+        nombreUsuario.value=user.email;
+    }
+    });
 
 
     function generarPdf(nombre, horas, img,categoria){
@@ -39,7 +53,7 @@
                 <td>Horas</td>
                 <td>Imagen</td>
                 <td>Pdf</td>
-                <td>Inscripción</td>
+                <td v-if="nombreUsuario!=''">Inscripción</td>
             </tr>
         </thead>
         <tbody v-for="curso in cursos" :key="curso.nombre">
@@ -48,7 +62,7 @@
                 <td>{{ curso.horas }}</td>
                 <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
                 <td><button @click="generarPdf(curso.nombre, curso.horas, curso.imagen,curso.categoria)">pdf</button></td>
-                <td><button>Incribirse</button></td>
+                <td v-if="nombreUsuario!=''"><button>Incribirse</button></td>
             </tr>
         </tbody>
     </table>
