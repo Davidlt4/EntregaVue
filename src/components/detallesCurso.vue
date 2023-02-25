@@ -18,7 +18,7 @@
         pdf.setFont(undefined, 'bold');
         imagen_curso.src = '../src/img/' + img;
         pdf.setTextColor(255,0,0);
-        pdf.text(10,10,'Categoria:'+categoria);
+        pdf.text(10,10,'Categoria: '+categoria);
         pdf.setTextColor(0,0,0);
         pdf.text(25,25, 'Curso: ' + nombre);
         pdf.text(25,40, 'Horas del curso: ' + horas);
