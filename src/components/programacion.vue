@@ -7,9 +7,29 @@
     import { collection} from "firebase/firestore"; 
     import {ref} from "vue";
     import {auth} from "../firebase.js"
+    import { getStorage,ref as ref2,getDownloadURL } from "firebase/storage";
 
     const db = useFirestore()
     const cursos = useCollection(collection(db, 'Cursos'))
+
+    //Funcion para sacar las imagenes de firebase
+    function sacarImagen(imagen,nombre){
+
+        var nombre_img= imagen
+        // Create a reference with an initial file path and name
+        const storage = getStorage();
+        const pathReference = ref2(storage, nombre_img);
+
+        getDownloadURL(pathReference).then((url) => {
+            console.log(url);
+            const img = document.getElementById(nombre);
+            img.setAttribute('src', url);
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+
+    }
 
     /**Varible nombreUsuario para distinguir si hay un usuario logeado o no*/
     let nombreUsuario=ref("");
@@ -45,7 +65,7 @@
                 <!--Creamos un router link con el id del curso para así poder mostrar los detalles-->
                 <td><router-link v-bind:to="'/detallesCurso/'+curso.id">{{ curso.nombre }}</router-link></td>
                 <td>{{ curso.horas }}</td>
-                <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                <td><img v-bind:src="sacarImagen(curso.imagen,curso.nombre)" v-bind:id="curso.nombre" width="50" height="50"></td>
                 <!--Solo mostramos este botón si el usuario está registrado-->
                 <td v-if="nombreUsuario!=''"><button>Incribirse</button></td>
             </tr>

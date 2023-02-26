@@ -8,10 +8,29 @@
     import { onAuthStateChanged} from "firebase/auth";
     import {ref} from "vue";
     import {auth} from "../firebase.js"
+    import { getStorage,ref as ref2,getDownloadURL } from "firebase/storage";
 
     /**Sacamos los cursos de la base de firestore*/
     const db = useFirestore()
     const cursos = useCollection(collection(db, 'Cursos'))
+
+    //Funcion para sacar las imagenes de firebase
+    function sacarImagen(imagen,nombre){
+
+        var nombre_img= imagen
+        // Create a reference with an initial file path and name
+        const storage = getStorage();
+        const pathReference = ref2(storage, nombre_img);
+
+        getDownloadURL(pathReference).then((url) => {
+            const img = document.getElementById(nombre);
+            img.setAttribute('src', url);
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+
+    }
 
     /**Varible nombreUsuario para distinguir si hay un usuario logeado o no*/
     let nombreUsuario=ref("");
@@ -81,7 +100,7 @@
             <tr v-if="curso.id==$route.params.id">
                 <td>{{ curso.nombre }}</td>
                 <td>{{ curso.horas }}</td>
-                <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                <td><img v-bind:src="sacarImagen(curso.imagen,curso.nombre)" v-bind:id="curso.nombre" width="50" height="50"></td>
                 <td><button @click="generarPdf(curso.nombre, curso.horas, curso.imagen,curso.categoria)">pdf</button></td>
                 <td v-if="nombreUsuario!=''"><button>Incribirse</button></td>
             </tr>

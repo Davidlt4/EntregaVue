@@ -7,10 +7,29 @@
     import {useFirestore,useCollection } from 'vuefire'
     import {collection,doc,deleteDoc} from "firebase/firestore"; 
     import crearCurso from "./crearCurso.vue"
+    import { getStorage,ref as ref2,getDownloadURL } from "firebase/storage";
 
     /**Sacamos los cursos de la base de firestore*/
     const db = useFirestore()
     const cursos = useCollection(collection(db, 'Cursos'))
+
+    //Funcion para sacar las imagenes de firebase
+    function sacarImagen(imagen,nombre){
+
+        var nombre_img= imagen
+        // Create a reference with an initial file path and name
+        const storage = getStorage();
+        const pathReference = ref2(storage, nombre_img);
+
+        getDownloadURL(pathReference).then((url) => {
+            const img = document.getElementById(nombre);
+            img.setAttribute('src', url);
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+
+    }
 
     /**Varible nombreUsuario para distinguir si hay un usuario logeado o no*/
     let nombreUsuario=ref("");
@@ -53,7 +72,7 @@
             <tr v-if="curso.categoria=='programacion'">
                 <td><router-link v-bind:to="'/detallesCurso/'+curso.id">{{ curso.nombre }}</router-link></td>
                 <td>{{ curso.horas }}</td>
-                <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                 <td><img v-bind:src="sacarImagen(curso.imagen,curso.nombre)" v-bind:id="curso.nombre" width="50" height="50"></td>
                 <!--En el caso de que sea admin damos opción a borrar-->
                 <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
             </tr>
@@ -78,7 +97,7 @@
             <tr v-if="curso.categoria=='SOs'">
                 <td><router-link v-bind:to="'/detallesCurso/'+curso.id">{{ curso.nombre }}</router-link></td>
                 <td>{{ curso.horas }}</td>
-                <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                 <td><img v-bind:src="sacarImagen(curso.imagen,curso.nombre)" v-bind:id="curso.nombre" width="50" height="50"></td>
                 <!--En el caso de que sea admin damos opción a borrar-->
                 <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
             </tr>
@@ -104,7 +123,7 @@
             <tr v-if="curso.categoria=='ofimatica'">
                 <td><router-link v-bind:to="'/detallesCurso/'+curso.id">{{ curso.nombre }}</router-link></td>
                 <td>{{ curso.horas }}</td>
-                <td><img v-bind:src="'/src/img/'+curso.imagen" width="50" height="50"></td>
+                 <td><img v-bind:src="sacarImagen(curso.imagen,curso.nombre)" v-bind:id="curso.nombre" width="50" height="50"></td>
                 <!--En el caso de que sea admin damos opción a borrar-->
                 <td v-if="nombreUsuario=='admin@gmail.com'"><button @click="borrarCurso(curso.id)">Borrar</button></td>
             </tr>
