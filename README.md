@@ -1,6 +1,5 @@
 !!A TENER EN CUENTA¡¡
 
-A la hora de crear un curso selecciona una imagen de la carpeta img del proyecto.
 El hosting está hecho pero alguna funcionalidades en el host no funcionan por las rutas.
 Localmente funciona todo.
 
